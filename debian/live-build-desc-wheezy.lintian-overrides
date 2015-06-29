@@ -1,0 +1,4 @@
+live-build-desc-wheezy: depends-on-essential-package-without-using-version depends: *
+live-build-desc-wheezy: empty-binary-package
+live-build-desc-wheezy: possible-gpl-code-linked-with-openssl
+

@@ -1,0 +1,4 @@
+live-build-desc-jessie: depends-on-essential-package-without-using-version depends: *
+live-build-desc-jessie: empty-binary-package
+live-build-desc-jessie: possible-gpl-code-linked-with-openssl
+

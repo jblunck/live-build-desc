@@ -9,5 +9,16 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+CODENAME=$(shell lsb_release --short --codename)
+
 %:
 	dh $@
+
+override_dh_prep: debian/$(CODENAME).deps
+	# First update control file
+	cp -n debian/control debian/control.orig
+	cat debian/control.orig debian/control.dist | \
+		sed -e "s/@@CODENAME@@/$(CODENAME)/" > debian/control
+	dh_prep
+	# Update substvars after running dh_prep
+	debian/substvars_dist_depends

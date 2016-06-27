@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Update dist:Depends in substvars file
+#
+
+CODENAME=$(lsb_release --short --codename)
+DEPS=$(grep -v '^#' debian/${CODENAME}.deps | paste -s -d, | tr -s ',')
+SUBSTVARS=debian/live-build-desc-${CODENAME}.substvars
+
+if [ -e "${SUBSTVARS}" ] ; then
+    sed -ie '/^dist:Depends=/d' "${SUBSTVARS}"
+fi
+
+echo "dist:Depends=${DEPS}" >> "${SUBSTVARS}"
